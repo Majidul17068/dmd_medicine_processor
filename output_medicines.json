@@ -1,184 +1,112 @@
 [
   {
-    "VPID": "44013111000001100",
-    "original_name": "Generic Paravit-Mod liquid",
-    "name": "Paravit-Mod",
-    "strength": "",
-    "formulation": "liquid"
+    "VPID": "44075911000001106",
+    "original_name": "Generic Health Plus Omega Flaxseed Oil 500mg capsules",
+    "name": "Generic Health Plus Omega Flaxseed Oil",
+    "strength": "500mg",
+    "formulation": "capsules"
   },
   {
-    "VPID": "44013011000001101",
-    "original_name": "Generic Paravit-Mod capsules",
-    "name": "Paravit-Mod",
+    "VPID": "44060511000001104",
+    "original_name": "Pembrolizumab 80mg/50ml in Sodium chloride 0.9% infusion bags",
+    "name": "Pembrolizumab in Sodium chloride 0.9% infusion bags",
+    "strength": "80mg/50ml",
+    "formulation": ""
+  },
+  {
+    "VPID": "44060911000001106",
+    "original_name": "Pembrolizumab 225mg/100ml in Sodium chloride 0.9% infusion bags",
+    "name": "Pembrolizumab in Sodium chloride 0.9% infusion bags",
+    "strength": "225mg/100ml",
+    "formulation": ""
+  },
+  {
+    "VPID": "42754311000001102",
+    "original_name": "Combination blood glucose and blood ketone meters - for personal use (single user)",
+    "name": "Combination blood glucose and blood ketone meters - for personal use (single user)",
+    "strength": "",
+    "formulation": ""
+  },
+  {
+    "VPID": "42755311000001103",
+    "original_name": "Generic Bactisil Ultra Probiotic capsules",
+    "name": "Bactisil Ultra Probiotic",
     "strength": "",
     "formulation": "capsules"
   },
   {
-    "VPID": "44027911000001102",
-    "original_name": "Generic Talcum S.A.L.F. sterile powder 4g bottles",
-    "name": "Talcum",
-    "strength": "4g",
-    "formulation": "sterile powder"
+    "VPID": "42754711000001103",
+    "original_name": "Acetic acid (glacial) 3% solution",
+    "name": "Acetic acid (glacial) 3% solution",
+    "strength": "",
+    "formulation": ""
   },
   {
-    "VPID": "44027511000001109",
-    "original_name": "Fentanyl 500micrograms/10ml solution for injection pre-filled syringes",
-    "name": "Fentanyl",
-    "strength": "500micrograms/10ml",
-    "formulation": "solution for injection, pre-filled syringes"
+    "VPID": "42754911000001101",
+    "original_name": "Buprenorphine 25micrograms/hour transdermal patches",
+    "name": "Buprenorphine hour",
+    "strength": "25micrograms/",
+    "formulation": "transdermal patches",
+    "duration": "96 hours"
   },
   {
-    "VPID": "44027611000001108",
-    "original_name": "Fluorescein 1g/5ml solution for injection ampoules",
-    "name": "Fluorescein solution for ampoules",
-    "strength": "1g/5ml",
-    "formulation": "injection"
+    "VPID": "42755011000001101",
+    "original_name": "Buprenorphine 30micrograms/hour transdermal patches",
+    "name": "Buprenorphine hour",
+    "strength": "30micrograms/",
+    "formulation": "transdermal patches",
+    "duration": ""
   },
   {
-    "VPID": "44028111000001104",
-    "original_name": "Gentamicin 240mg/6ml solution for injection pre-filled syringes",
-    "name": "Gentamicin",
-    "strength": "240mg/6ml",
-    "formulation": "solution for injection pre-filled syringes"
+    "VPID": "42755111000001100",
+    "original_name": "Buprenorphine 40micrograms/hour transdermal patches",
+    "name": "Buprenorphine hour",
+    "strength": "40micrograms/",
+    "formulation": "transdermal patches",
+    "duration": "96 hours"
   },
   {
-    "VPID": "44028211000001105",
-    "original_name": "Hydrocortisone 100mg/100ml infusion bags",
-    "name": "Hydrocortisone",
+    "VPID": "42755211000001106",
+    "original_name": "Droxidopa 300mg capsules",
+    "name": "Droxidopa",
+    "strength": "300mg",
+    "formulation": "capsules"
+  },
+  {
+    "VPID": "42754811000001106",
+    "original_name": "Anticoagulant Citrate Dextrose Solution (Formula A) 750ml bags",
+    "name": "Anticoagulant Citrate Dextrose Solution",
+    "strength": "750ml",
+    "formulation": "Formula A"
+  },
+  {
+    "VPID": "36053011000001101",
+    "original_name": "Granisetron 3.1mg/24hours transdermal patches",
+    "name": "Granisetron hours",
+    "strength": "3.1mg/24",
+    "formulation": "transdermal patches",
+    "duration": "24 hours"
+  },
+  {
+    "VPID": "22403511000001106",
+    "original_name": "Rivastigmine 13.3mg/24hours transdermal patches",
+    "name": "Rivastigmine",
+    "strength": "13.3mg",
+    "formulation": "transdermal patches",
+    "duration": "24 hours"
+  },
+  {
+    "VPID": "42741311000001103",
+    "original_name": "Phenylephrine 40mg/4ml / Ketorolac 12mg/4ml solution for intraocular irrigation vials",
+    "name": "Phenylephrine / Ketorolac 12mg/4ml solution for intraocular irrigation vials",
+    "strength": "40mg/4ml",
+    "formulation": ""
+  },
+  {
+    "VPID": "42741211000001106",
+    "original_name": "Morphine hydrochloride 100mg/100ml infusion bags",
+    "name": "Morphine hydrochloride infusion bags",
     "strength": "100mg/100ml",
-    "formulation": "infusion bags"
-  },
-  {
-    "VPID": "44027211000001106",
-    "original_name": "Calcium folinate 1g/100ml solution for infusion vials",
-    "name": "Calcium folinate",
-    "strength": "1g/100ml",
-    "formulation": "solution for infusion vials"
-  },
-  {
-    "VPID": "44028311000001102",
-    "original_name": "Pegunigalsidase alfa 5mg/2.5ml solution for infusion vials",
-    "name": "Pegunigalsidase alfa",
-    "strength": "5mg/2.5ml",
-    "formulation": "solution for infusion vials"
-  },
-  {
-    "VPID": "44014311000001101",
-    "original_name": "Donanemab 350mg/20ml solution for infusion vials",
-    "name": "Donanemab",
-    "strength": "350mg/20ml",
-    "formulation": "solution for infusion vials"
-  },
-  {
-    "VPID": "44027311000001103",
-    "original_name": "Dasiglucagon 4mg/1ml solution for infusion vials",
-    "name": "Dasiglucagon",
-    "strength": "4mg/1ml",
-    "formulation": "solution for infusion vials"
-  },
-  {
-    "VPID": "44027711000001104",
-    "original_name": "Fruquintinib 1mg capsules",
-    "name": "Fruquintinib",
-    "strength": "1mg",
-    "formulation": "capsules"
-  },
-  {
-    "VPID": "44027811000001107",
-    "original_name": "Fruquintinib 5mg capsules",
-    "name": "Fruquintinib",
-    "strength": "5mg",
-    "formulation": "capsules"
-  },
-  {
-    "VPID": "44027411000001105",
-    "original_name": "Elafibranor 80mg tablets",
-    "name": "Elafibranor",
-    "strength": "80mg",
-    "formulation": "tablets"
-  },
-  {
-    "VPID": "44028011000001100",
-    "original_name": "Generic VSL#Fibre Experience Food Supplement oral powder 4g sachets",
-    "name": "Generic VSL#Fibre",
-    "strength": "4g",
-    "formulation": "oral powder sachets"
-  },
-  {
-    "VPID": "44007211000001104",
-    "original_name": "Acetic acid 4% gel",
-    "name": "Acetic acid",
-    "strength": "4%",
-    "formulation": "gel"
-  },
-  {
-    "VPID": "44007311000001107",
-    "original_name": "Amikacin 25mg/5ml solution for injection ampoules",
-    "name": "Amikacin",
-    "strength": "25mg/5ml",
-    "formulation": "solution for injection ampoules"
-  },
-  {
-    "VPID": "44007411000001100",
-    "original_name": "Ammonium chloride 350mg/5ml oral suspension",
-    "name": "Ammonium chloride",
-    "strength": "350mg/5ml",
-    "formulation": "oral suspension"
-  },
-  {
-    "VPID": "44007611000001102",
-    "original_name": "Bevacizumab 3mg/0.12ml solution for injection pre-filled syringes",
-    "name": "Bevacizumab",
-    "strength": "3mg/0.12ml",
-    "formulation": "solution for injection, pre-filled syringes"
-  },
-  {
-    "VPID": "44007511000001101",
-    "original_name": "Bevacizumab 3.75mg/0.15ml solution for injection pre-filled syringes",
-    "name": "Bevacizumab",
-    "strength": "3.75mg/0.15ml",
-    "formulation": "solution for injection, pre-filled syringes"
-  },
-  {
-    "VPID": "44007811000001103",
-    "original_name": "Calcium chloride 14.7% solution for injection 10ml vials",
-    "name": "Calcium chloride",
-    "strength": "14.7%",
-    "formulation": "solution for injection 10ml vials"
-  },
-  {
-    "VPID": "44008011000001105",
-    "original_name": "Clonidine 20mg/10ml solution for injection vials",
-    "name": "Clonidine",
-    "strength": "20mg/10ml",
-    "formulation": "solution for injection vials"
-  },
-  {
-    "VPID": "44008211000001100",
-    "original_name": "Generic VSL#3 Food Supplement capsules",
-    "name": "VSL#3 Food Supplement",
-    "strength": "",
-    "formulation": "capsules"
-  },
-  {
-    "VPID": "44007711000001106",
-    "original_name": "Caffeine 250mg/2ml / Sodium benzoate 250mg/2ml solution for injection ampoules",
-    "name": "Caffeine / Sodium benzoate solution for ampoules",
-    "strength": "250mg/2ml",
-    "formulation": "injection"
-  },
-  {
-    "VPID": "44009011000001100",
-    "original_name": "Cefotaxime 1g/50ml infusion bags",
-    "name": "Cefotaxime",
-    "strength": "1g",
-    "formulation": "infusion bags"
-  },
-  {
-    "VPID": "44007911000001108",
-    "original_name": "Cefotaxime 2g/100ml infusion bags",
-    "name": "Cefotaxime",
-    "strength": "2g/100ml",
-    "formulation": "infusion bags"
+    "formulation": ""
   }
 ]

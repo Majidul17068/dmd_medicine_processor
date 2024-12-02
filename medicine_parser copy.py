@@ -15,9 +15,9 @@ class MedicineGroqParser:
         )
         
         # Model name
-        self.model = "mixtral-8x7b-32768"
+        self.model = "mixtral-8x7b-32768"  # or "llama2-70b-4096"
         
-        # Compile regex patterns
+        # Compile regex patterns for validation and backup
         self.strength_pattern = re.compile(
             r'(\d+(?:\.\d+)?)\s*(?:micrograms|mcg|mg|g|ml|%)/(?:\d+(?:\.\d+)?)?\s*(?:ml|l)?|(\d+(?:\.\d+)?)\s*(?:micrograms|mcg|mg|g|ml)',
             re.IGNORECASE
@@ -26,90 +26,45 @@ class MedicineGroqParser:
             r'(tablets?|capsules?|(?:pre-filled\s+)?syringes?|(?:transdermal\s+)?patches?|oral\s+solution|suspension|cream|ointment|injection|powder|liquid|ampoules?|bottles?)',
             re.IGNORECASE
         )
-        self.patch_duration_pattern = re.compile(
-            r'(\d+(?:\.\d+)?)\s*(?:day|days|hour|hours|hr|hrs)',
-            re.IGNORECASE
-        )
-
-    def get_patch_duration_from_llm(self, medicine_string: str) -> str:
-        """Use LLM to determine patch duration and return only numeric value with unit"""
-        try:
-            prompt = f"""For the medicine patch "{medicine_string}", what is its duration?
-Reply ONLY with the number followed by either 'hours' or 'days'. 
-For example: '7 days' or '24 hours'.
-If unsure, reply with 'unknown'."""
-
-            completion = self.client.chat.completions.create(
-                model=self.model,
-                messages=[
-                    {"role": "system", "content": "You are an expert in pharmaceutical patches. Only respond with duration in format: X days or Y hours"},
-                    {"role": "user", "content": prompt}
-                ],
-                temperature=0.0,
-                max_tokens=10
-            )
-
-            duration = completion.choices[0].message.content.strip().lower()
-            if duration == "unknown":
-                return ""
-                
-            # Clean up the duration
-            return self.clean_duration(duration)
-                
-        except Exception as e:
-            print(f"Error getting patch duration from LLM: {str(e)}")
-            return ""
-
-    def clean_duration(self, duration: str) -> str:
-        """Clean up duration to standard format"""
-        if not duration:
-            return ""
-            
-        # Convert to lowercase and remove any extra spaces
-        duration = duration.lower().strip()
-        
-        # Extract number and unit
-        match = re.match(r'(\d+)\s*(?:day|days|hour|hours|hr|hrs)', duration)
-        if match:
-            number = match.group(1)
-            if 'hour' in duration or 'hr' in duration:
-                return f"{number} hours"
-            return f"{number} days"
-        return ""
 
     def extract_components(self, medicine_string: str) -> Dict:
-        """Extract medicine components using Groq API and regex patterns"""
+        """
+        Extract medicine components using Groq API and regex patterns
+        """
         try:
+            # Create prompt for Groq
             prompt = f"""Given the medicine name "{medicine_string}", extract the following components:
 1. Medicine name (without strength and formulation)
 2. Strength (with units)
 3. Formulation
-4. If it's a patch, what is its duration in hours or days?
 
 Return the result in JSON format like this:
 {{
     "name": "medicine name",
     "strength": "strength with units",
-    "formulation": "formulation type",
-    "duration": "X hours or Y days for patches"
+    "formulation": "formulation type"
 }}
 
-Be precise and only include exact information from the input, except for patch duration which can come from medical knowledge."""
+Be precise and only include the exact information present in the input."""
 
+            # Make API call to Groq
             completion = self.client.chat.completions.create(
                 model=self.model,
                 messages=[
-                    {"role": "system", "content": "You are an expert in parsing medical product names and understanding pharmaceutical formulations."},
+                    {"role": "system", "content": "You are an expert in parsing medical product names. Extract components accurately."},
                     {"role": "user", "content": prompt}
                 ],
-                temperature=0.0,
+                temperature=0.0,  # Use 0 for consistent results
                 max_tokens=200
             )
 
+            # Parse the response
             try:
                 response_text = completion.choices[0].message.content
+                # Extract JSON from the response
+                response_text = response_text.strip()
                 if response_text.startswith('```json'):
-                    response_text = response_text[7:-3]
+                    response_text = response_text[7:-3]  # Remove ```json and ``` if present
                 result = json.loads(response_text)
                 
                 # Validate and clean results
@@ -121,26 +76,21 @@ Be precise and only include exact information from the input, except for patch d
                     formulation_match = self.formulation_pattern.search(medicine_string)
                     result['formulation'] = formulation_match.group(0) if formulation_match else ""
                 
-                # Handle patch duration
-                if 'patch' in medicine_string.lower():
-                    explicit_duration = self.patch_duration_pattern.search(medicine_string)
-                    if explicit_duration:
-                        result['duration'] = self.clean_duration(explicit_duration.group(0))
-                    elif not result.get('duration'):
-                        result['duration'] = self.get_patch_duration_from_llm(medicine_string)
-                
                 return result
                 
             except (json.JSONDecodeError, AttributeError) as e:
-                print(f"Error parsing Groq response: {str(e)}")
+                print(f"Error parsing Groq response for '{medicine_string}': {str(e)}")
                 return self.extract_components_regex(medicine_string)
             
         except Exception as e:
-            print(f"Error in Groq API call: {str(e)}")
+            print(f"Error processing '{medicine_string}' with Groq: {str(e)}")
+            # Fallback to regex-only method
             return self.extract_components_regex(medicine_string)
 
     def extract_components_regex(self, medicine_string: str) -> Dict:
-        """Fallback method using only regex patterns"""
+        """
+        Fallback method using only regex patterns
+        """
         strength_match = self.strength_pattern.search(medicine_string)
         strength = strength_match.group(0) if strength_match else ""
 
@@ -158,26 +108,19 @@ Be precise and only include exact information from the input, except for patch d
         name = re.sub(r'\s+', ' ', name)
         name = name.strip().rstrip(" -,.")
 
-        result = {
+        return {
             "name": name,
             "strength": strength,
             "formulation": formulation
         }
 
-        # For patches, try to get duration
-        if 'patch' in medicine_string.lower():
-            explicit_duration = self.patch_duration_pattern.search(medicine_string)
-            if explicit_duration:
-                result['duration'] = self.clean_duration(explicit_duration.group(0))
-            else:
-                result['duration'] = self.get_patch_duration_from_llm(medicine_string)
-
-        return result
-
     def process_medicine_list(self, medicines: List[Dict]) -> List[Dict]:
-        """Process a list of medicines and extract components for each"""
+        """
+        Process a list of medicines and extract components for each
+        """
         processed_medicines = []
         
+        # Add progress bar
         for medicine in tqdm(medicines, desc="Processing medicines"):
             components = self.extract_components(medicine['NM'])
             processed_medicine = {
@@ -187,18 +130,15 @@ Be precise and only include exact information from the input, except for patch d
                 'strength': components['strength'],
                 'formulation': components['formulation']
             }
-
-            # Add duration only for patches
-            if 'patch' in medicine['NM'].lower():
-                processed_medicine['duration'] = components.get('duration', '')
-            
             processed_medicines.append(processed_medicine)
-            time.sleep(0.1)  # Rate limiting
+            time.sleep(0.1)  # Small delay to avoid rate limits
             
         return processed_medicines
 
 def process_file(input_file: str, output_file: str) -> None:
-    """Read medicines from input JSON file, process them, and save to output JSON file"""
+    """
+    Read medicines from input JSON file, process them, and save to output JSON file
+    """
     try:
         # Check for API key
         if not os.getenv('GROQ_API_KEY'):
